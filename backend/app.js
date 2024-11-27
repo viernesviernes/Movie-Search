@@ -6,31 +6,26 @@ const app = express();
 
 app.listen(3000, console.log("Port 3000 is active."));
 
-app.get('/api/search/:search', (req, res) => {
-    
-    let search = req.params['search'];
-    
-    axios({
-        method: 'get',
-        url: `https://www.omdbapi.com/?apikey=${process.env.APIKEY}&s=${search}`
-        })
-        .then((response) => {
-            res.json(response.data);
-        });
-    
-});
+app.get('/api/search', (req, res) => {
 
-app.get('/api/search/:search/page/:page', (req, res) => {
-    let search = req.params['search'];
-    let page = req.params['page'];
+    const { key, title, page } = req.query;
+
+    let omdbURL = `https://www.omdbapi.com/?apikey=${process.env.APIKEY}&s=${title}${page ? `&page=${page}` : ""}`
+
+    console.log(omdbURL);
+
+    if (key === process.env.BACKENDKEY) {
+        axios({
+            method: 'get',
+            url: omdbURL
+            })
+            .then((response) => {
+                res.json(response.data);
+            });
+    } else {{
+        res.status(400);
+    }}
     
-    axios({
-        method: 'get',
-        url: `https://www.omdbapi.com/?apikey=${process.env.APIKEY}&s=${search}&page=${page}`
-        })
-        .then((response) => {
-            res.json(response.data);
-        });
 });
 
 app.get('/api/id/:id', (req, res) => {
