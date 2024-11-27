@@ -1,25 +1,10 @@
 const express = require('express');
 const axios = require('axios');
-const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 const app = express();
 
 app.listen(3000, console.log("Port 3000 is active."));
-
-app.use(express.static('front'));
-
-app.get('/search', (req, res) => {
-
-    res.sendFile(path.join(__dirname, 'front/search.html'));
-    
-});
-
-app.get('/movie', (req, res) => {
-
-    res.sendFile(path.join(__dirname, 'front/search.html'));
-    
-});
 
 app.get('/api/search/:search', (req, res) => {
     
@@ -48,7 +33,7 @@ app.get('/api/search/:search/page/:page', (req, res) => {
         });
 });
 
-app.get('/api2/id/:id', (req, res) => {
+app.get('/api/id/:id', (req, res) => {
 
     let search = req.params['id'];
     
