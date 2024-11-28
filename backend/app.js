@@ -3,6 +3,7 @@ const axios = require('axios');
 require('dotenv').config({ path: '../.env' });
 const cors = require('cors');
 app.use(cors());
+
 const app = express();
 
 app.listen(3000, console.log("Port 3000 is active."));
