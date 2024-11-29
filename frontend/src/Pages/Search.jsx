@@ -13,11 +13,13 @@ function Search() {
     const [max, setMax] = useState(1);
 
     // Changes every previous/next
-    const [page, setPage] = useState(searchParams.get('page'));
-    const [cards, setCards] = useState([]);
+    const [page, setPage] = useState(parseInt(searchParams.get('page')));
+    const [cards, setCards] = useState();
 
     // Data fetcher
     useEffect( () => {
+        setSearchParams({ title: title, page: page });
+        setCards();
         const fetchData = async () => {
             let [listArray, totalResults] = await fetch(`https://dramatic-cord-disclose.onrender.com/api/search?title=${title}&page=${page}&key=${import.meta.env.VITE_KEY}`)
             .then((response) => {
@@ -33,7 +35,7 @@ function Search() {
         };
 
         fetchData();
-    }, [searchParams])
+    }, [title, page])
 
     return (
     <>
@@ -41,11 +43,11 @@ function Search() {
     <input type="button" value="Search" onClick={() => {setTitle(search); setSearchParams({ title: title, page: 1 });}} disabled={!search} />
     <p>Search results for {title}:</p>
     <div className='container'>
-        {cards.map((elem) => (
+        {!cards ? (<p>Loading...</p>) : (cards.map((elem) => (
             <Card img={elem.Poster} title={elem.Title} type={elem.Type} year={elem.Year} />
-        ))}
+        )))}
     </div>
-    <button>Previous</button> <button>Next</button><br />
+    <button disabled={page == 1} onClick={() => {setPage(page-1)}}>Previous</button> <button disabled={page == max} onClick={() => {setPage(page+1)}}>Next</button><br />
     </>
     )
 }
