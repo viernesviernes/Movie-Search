@@ -21,7 +21,7 @@ function Search() {
         setSearchParams({ title: title, page: page });
         setCards();
         const fetchData = async () => {
-            let [listArray, totalResults] = await fetch(`https://dramatic-cord-disclose.onrender.com/api/search?title=${title}&page=${page}&key=${import.meta.env.VITE_KEY}`)
+            let [listArray, totalResults] = await fetch(`${import.meta.env.VITE_URI}/api/search?title=${title}&page=${page}&key=${import.meta.env.VITE_KEY}`)
             .then((response) => {
                 return response.json();
             }).then((json) => {
