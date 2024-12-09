@@ -19,8 +19,8 @@ To use the application, simply visit the website: [Movie Search Database](https:
 - The app fetches movie data from the [OMDb API](https://www.omdbapi.com/).
 - Users can enter a movie title in the search bar, and results are displayed dynamically.
 
-## Contributing
-Feel free to contribute by submitting issues and pull requests. This project is open source!
+## Resources Used
+- [MagicPattern](https://www.magicpattern.design/tools/css-backgrounds) for CSS background
 
 ## License
 This project is licensed under the MIT License.
