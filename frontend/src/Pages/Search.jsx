@@ -39,10 +39,12 @@ function Search() {
 
     return (
     <>
-    <input type="text" value={search} onChange={(e) => {setSearch(e.target.value)}} />
-    <input type="button" value="Search" onClick={() => {setTitle(search); setSearchParams({ title: title, page: 1 });}} disabled={!search} />
-    <p>Search results for {title}:</p>
-    <div className='container'>
+    <div className="search">
+        <input type="text" value={search} onChange={(e) => {setSearch(e.target.value)}} />
+        <input type="button" value="Search" onClick={() => {setTitle(search); setSearchParams({ title: title, page: 1 });}} disabled={!search} />
+    </div>
+    <h2>Search results for {title}:</h2>
+    <div className='movies'>
         {!cards ? (<p>Loading...</p>) : (cards.map((elem) => (
             <Card img={elem.Poster} title={elem.Title} type={elem.Type} year={elem.Year} />
         )))}

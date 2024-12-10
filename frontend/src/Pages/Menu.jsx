@@ -6,8 +6,15 @@ function Menu() {
     const navigate = useNavigate();
     return (
     <>
-    <input type="text" onChange={(e) => {setSearch(e.target.value)}}/>
-    <input type="button" value="Search" onClick={() => navigate(`/search?title=${search}&page=1`)} disabled={!search} />
+    <div className="hero">
+        <h2>Welcome to</h2>
+        <h1>The Movie Database</h1>
+        <p>A comprehensive platform designed to provide detailed information about a wide range of movies.</p>
+        <div className="search">
+            <input type="text" onChange={(e) => {setSearch(e.target.value)}}/>
+            <input type="button" value="Search" onClick={() => navigate(`/search?title=${search}&page=1`)} disabled={!search} />
+        </div>
+    </div>
     </>
     )
 }

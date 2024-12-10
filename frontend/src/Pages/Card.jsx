@@ -3,8 +3,7 @@ function Card(props) {
         <>
         <div className="card">
             <img src={props.img} />
-            <p>{props.title}</p>
-            <p>{props.type}</p>
+            <h4>{props.title}</h4>
             <p>{props.year}</p>
         </div>
         </>
